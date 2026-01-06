@@ -1032,27 +1032,21 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ currentUser }) =
                       <div className="mt-3 bg-white p-4 rounded border border-gray-100 shadow-sm space-y-3">
                         <div>
                             <p className="font-bold mb-1 text-red-600 text-sm">问题原因：</p>
-                            <p className="text-sm">系统检测到您尚未连接 Git 仓库。Netlify 无法读取配置的 API Key。</p>
+                            <p className="text-sm">Netlify 的环境变量中缺少 API_KEY 配置，或者配置后未重新部署。</p>
                         </div>
                         
                         <div className="pt-2 border-t border-gray-100">
                             <h4 className="font-bold text-brand-600 text-sm flex items-center gap-1 mb-2">
-                               <Terminal size={16}/> 解决方案：请在本地终端运行以下命令
+                               <Settings size={16}/> 修复步骤 (请按顺序操作)：
                             </h4>
-                            <div className="bg-gray-900 text-gray-100 p-3 rounded text-xs font-mono overflow-x-auto">
-                              <div className="mb-2 text-gray-400"># 1. 在 GitHub 创建空仓库 thitrang20160-cell 后：</div>
-                              <pre className="select-all">
-git init
-git add .
-git commit -m "Initial deploy"
-git branch -M main
-git remote add origin https://github.com/您的用户名/thitrang20160-cell.git
-git push -u origin main
-                              </pre>
+                            <div className="bg-gray-50 text-gray-700 p-3 rounded text-sm space-y-2 border border-gray-200">
+                              <p>1. 登录 Netlify 后台，进入 <b>Site configuration</b> &gt; <b>Environment variables</b>。</p>
+                              <p>2. 点击 <b>Add a variable</b>。</p>
+                              <p>3. Key (键名) 填写: <code className="bg-gray-200 px-1 rounded font-bold">API_KEY</code></p>
+                              <p>4. Value (键值) 填写: 您的以 <code className="bg-gray-200 px-1 rounded">AIza...</code> 开头的 Google Gemini 密钥。</p>
+                              <p>5. <b>关键步骤：</b> 保存后，必须去 <b>Deploys</b> 页面点击 <b>"Trigger deploy"</b> -> <b>"Clear cache and deploy site"</b>。</p>
+                              <p className="text-xs text-gray-500 mt-2 pt-2 border-t">提示：Vite 项目的环境变量是在构建时注入的，因此修改配置后必须重新构建部署才能生效。</p>
                             </div>
-                            <p className="text-xs text-gray-500 mt-2">
-                               上传成功后，回到 Netlify 点击 "Link repository" 即可看到您的仓库。
-                            </p>
                         </div>
                       </div>
                     )}

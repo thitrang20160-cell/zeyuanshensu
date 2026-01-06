@@ -3,15 +3,13 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig(({ mode }) => {
   // Load env file based on `mode` in the current working directory.
-  // Set the third parameter to '' to load all env regardless of the `VITE_` prefix.
   const env = loadEnv(mode, (process as any).cwd(), '');
   
   return {
     plugins: [react()],
     define: {
-      // By default, Vite doesn't define `process.env`. We must define it manually
-      // to support the `process.env.API_KEY` usage required by the Google GenAI SDK.
-      'process.env.API_KEY': JSON.stringify(env.API_KEY)
+      // Safely default to empty string if undefined to prevent build crashes
+      'process.env.API_KEY': JSON.stringify(env.API_KEY || '')
     }
   };
 });
