@@ -1044,7 +1044,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ currentUser }) =
                               <p>2. 点击 <b>Add a variable</b>。</p>
                               <p>3. Key (键名) 填写: <code className="bg-gray-200 px-1 rounded font-bold">API_KEY</code></p>
                               <p>4. Value (键值) 填写: 您的以 <code className="bg-gray-200 px-1 rounded">AIza...</code> 开头的 Google Gemini 密钥。</p>
-                              <p>5. <b>关键步骤：</b> 保存后，必须去 <b>Deploys</b> 页面点击 <b>"Trigger deploy"</b> -> <b>"Clear cache and deploy site"</b>。</p>
+                              <p>5. <b>关键步骤：</b> 保存后，必须去 <b>Deploys</b> 页面点击 <b>"Trigger deploy"</b> &rarr; <b>"Clear cache and deploy site"</b>。</p>
                               <p className="text-xs text-gray-500 mt-2 pt-2 border-t">提示：Vite 项目的环境变量是在构建时注入的，因此修改配置后必须重新构建部署才能生效。</p>
                             </div>
                         </div>
