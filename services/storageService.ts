@@ -2,10 +2,17 @@ import { User, Appeal, Transaction, UserRole, SystemConfig, KnowledgeBaseItem, P
 import { createClient } from '@supabase/supabase-js';
 
 // ==========================================
-// 🔴 请替换下方的 URL 和 KEY 为您自己的 Supabase 信息 🔴
+// 🔐 安全更新：密钥现已移至环境变量
 // ==========================================
-const SUPABASE_URL = 'https://uvisnxzufuxhomgoalon.supabase.co';
-const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV2aXNueHp1ZnV4aG9tZ29hbG9uIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njc1OTYyMTQsImV4cCI6MjA4MzE3MjIxNH0.zZBtpYfkJYaPRILmGNcFev2fiSY4xwQIbkov6NbBObc';
+// Netlify 环境变量配置：
+// VITE_SUPABASE_URL
+// VITE_SUPABASE_ANON_KEY
+const SUPABASE_URL = (import.meta as any).env.VITE_SUPABASE_URL || '';
+const SUPABASE_KEY = (import.meta as any).env.VITE_SUPABASE_ANON_KEY || '';
+
+if (!SUPABASE_URL || !SUPABASE_KEY) {
+  console.warn('Supabase 环境变量未配置，数据库连接将失败。');
+}
 
 export const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
